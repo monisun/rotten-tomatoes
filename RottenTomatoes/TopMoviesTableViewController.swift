@@ -156,14 +156,6 @@ class TopMoviesTableViewController: UITableViewController {
     func printError(error: NSError) {
         println("Error: \(error.localizedDescription)")
     }
-    
-    private func getHiResImageUrl(originalUrl: String) -> String {
-        var url = String()  // i.e. originalUrl: "http://resizing.flixster.com/q7N6i-lodgiFIv2pn2fKcITzDFw=/o/dkpu1ddg7pbsk.cloudfront.net/movie/11/19/07/11190713_ori.jpg"
-        if let range = originalUrl.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch) {
-            url = originalUrl.stringByReplacingCharactersInRange(range, withString: "https://content6.flixster.com/")
-        }
-        return url
-    }
 
     func onRefresh() {
         // query API for updated data and reload table

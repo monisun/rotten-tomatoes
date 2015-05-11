@@ -13,6 +13,8 @@
 		985E56611B005B670019D7E1 /* RottenTomatoesUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E56601B005B670019D7E1 /* RottenTomatoesUITabBarController.swift */; };
 		986710051AFFD12C00D6291C /* Bridging.m in Sources */ = {isa = PBXBuildFile; fileRef = 986710041AFFD12C00D6291C /* Bridging.m */; };
 		98932B7B1AFFCEF1003C8FA4 /* TopMoviesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98932B7A1AFFCEF1003C8FA4 /* TopMoviesTableViewController.swift */; };
+		98AD3E491B009AD400973B96 /* RTCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AD3E481B009AD400973B96 /* RTCollectionViewController.swift */; };
+		98AD3E4C1B009CD900973B96 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AD3E4B1B009CD900973B96 /* MovieCollectionViewCell.swift */; };
 		98D30FD81AFEF166007E3D50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D30FD71AFEF166007E3D50 /* AppDelegate.swift */; };
 		98D30FDA1AFEF166007E3D50 /* MovieInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D30FD91AFEF166007E3D50 /* MovieInfoViewController.swift */; };
 		98D30FDD1AFEF166007E3D50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D30FDB1AFEF166007E3D50 /* Main.storyboard */; };
@@ -41,6 +43,8 @@
 		986710041AFFD12C00D6291C /* Bridging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bridging.m; sourceTree = "<group>"; };
 		986710061AFFD66900D6291C /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/../build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		98932B7A1AFFCEF1003C8FA4 /* TopMoviesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopMoviesTableViewController.swift; sourceTree = "<group>"; };
+		98AD3E481B009AD400973B96 /* RTCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTCollectionViewController.swift; sourceTree = "<group>"; };
+		98AD3E4B1B009CD900973B96 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		98D30FD21AFEF166007E3D50 /* RottenTomatoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RottenTomatoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98D30FD61AFEF166007E3D50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98D30FD71AFEF166007E3D50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,8 +93,17 @@
 				98D30FD91AFEF166007E3D50 /* MovieInfoViewController.swift */,
 				98932B7A1AFFCEF1003C8FA4 /* TopMoviesTableViewController.swift */,
 				985E56601B005B670019D7E1 /* RottenTomatoesUITabBarController.swift */,
+				98AD3E481B009AD400973B96 /* RTCollectionViewController.swift */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		98AD3E4A1B009CC500973B96 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				98AD3E4B1B009CD900973B96 /* MovieCollectionViewCell.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		98D30FC91AFEF166007E3D50 = {
@@ -118,6 +131,7 @@
 		98D30FD41AFEF166007E3D50 /* RottenTomatoes */ = {
 			isa = PBXGroup;
 			children = (
+				98AD3E4A1B009CC500973B96 /* Model */,
 				98932B791AFFCEC1003C8FA4 /* View Controllers */,
 				98D30FD71AFEF166007E3D50 /* AppDelegate.swift */,
 				98D30FDB1AFEF166007E3D50 /* Main.storyboard */,
@@ -300,11 +314,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98AD3E491B009AD400973B96 /* RTCollectionViewController.swift in Sources */,
 				98D30FDA1AFEF166007E3D50 /* MovieInfoViewController.swift in Sources */,
 				98932B7B1AFFCEF1003C8FA4 /* TopMoviesTableViewController.swift in Sources */,
 				985E565D1B0042BC0019D7E1 /* Utility.swift in Sources */,
 				98D30FD81AFEF166007E3D50 /* AppDelegate.swift in Sources */,
 				985E565B1B0039570019D7E1 /* Reachability.swift in Sources */,
+				98AD3E4C1B009CD900973B96 /* MovieCollectionViewCell.swift in Sources */,
 				985E56611B005B670019D7E1 /* RottenTomatoesUITabBarController.swift in Sources */,
 				986710051AFFD12C00D6291C /* Bridging.m in Sources */,
 			);

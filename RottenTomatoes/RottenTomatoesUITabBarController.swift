@@ -12,9 +12,15 @@ class RottenTomatoesUITabBarController: UITabBarController {
     
     let topMoviesStaticUrl = "https://gist.githubusercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json"
     let topRentalsStaticUrl = "https://gist.githubusercontent.com/timothy1ee/e41513a57049e21bc6cf/raw/b490e79be2d21818f28614ec933d5d8f467f0a66/gistfile1.json"
+    
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    var lastSelectedTabIndex = Int()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        segmentControl.selectedSegmentIndex = 0     // default to List View
+        lastSelectedTabIndex = 0
         
         if let tabs = self.tabBar.items as! [UITabBarItem]? {
             tabs[0].image = UIImage(named: "movies")
@@ -52,19 +58,53 @@ class RottenTomatoesUITabBarController: UITabBarController {
         self.presentViewController(viewController, animated: true, completion: nil)
     }
     
-//    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
-//        tabBar.selectedItem..in
-//    }
+    func tabBarController(tabBarController: UITabBarController, didSelectItem: UITabBarItem) {
+        lastSelectedTabIndex = tabBarController.selectedIndex
+    }
+    
+    
+    @IBAction func segmentControlValueChanged(sender: AnyObject) {
+        let sender = sender as! UISegmentedControl
+        let vcs = self.viewControllers as! [UIViewController]
+        switch(sender.selectedSegmentIndex) {
+        case 0: // TableView
+            if lastSelectedTabIndex == 0 {
+                performSegueWithIdentifier("tvSegue", sender: self)
+            } else {
+                performSegueWithIdentifier("tvSegue", sender: self)
+            }
+            
+        case 1: // CollectionView
+            if lastSelectedTabIndex == 0 {
+                performSegueWithIdentifier("cvSegue", sender: self)
+            } else {
+                performSegueWithIdentifier("cvSegue", sender: self)
+            }
+        default:
+            NSLog("Unexpected: segmentControl.selectedSegmentIndex: \(segmentControl.selectedSegmentIndex)")
+        }
+    }
     
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "cvSegue" {
+            let rtCollectionViewController = segue.destinationViewController as! RTCollectionViewController
+            if segmentControl.selectedSegmentIndex == 0 {
+                rtCollectionViewController.url = topMoviesStaticUrl
+            } else {
+                rtCollectionViewController.url = topRentalsStaticUrl
+            }
+        }
+        
+        if segue.identifier == "tvSegue" {
+            let tvController = segue.destinationViewController as! TopMoviesTableViewController
+            if segmentControl.selectedSegmentIndex == 0 {
+                tvController.url = topMoviesStaticUrl
+            } else {
+                tvController.url = topRentalsStaticUrl
+            }
+        }
     }
-    */
 
 }

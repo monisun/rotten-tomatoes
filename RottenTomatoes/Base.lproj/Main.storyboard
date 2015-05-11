@@ -9,7 +9,20 @@
         <scene sceneID="p2C-CP-v0f">
             <objects>
                 <tabBarController id="d1m-Af-dTj" customClass="RottenTomatoesUITabBarController" customModule="RottenTomatoes" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="0Ya-WK-LWw"/>
+                    <navigationItem key="navigationItem" id="0Ya-WK-LWw">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="U7d-Nc-YRD">
+                            <rect key="frame" x="208" y="7" width="184" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="List"/>
+                                <segment title="Grid"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentControlValueChanged:" destination="d1m-Af-dTj" eventType="valueChanged" id="y7t-0x-EgW"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" alpha="0.89999999999999991" contentMode="scaleToFill" barStyle="black" itemPositioning="centered" id="9Fz-eb-3Wd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -17,13 +30,70 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <outlet property="segmentControl" destination="U7d-Nc-YRD" id="G2P-Qi-w7V"/>
                         <segue destination="dja-dm-GMO" kind="relationship" relationship="viewControllers" id="jZo-QW-Z9S"/>
                         <segue destination="dja-dm-GMO" kind="relationship" relationship="viewControllers" id="n8H-D1-Ico"/>
+                        <segue destination="OUM-4y-adN" kind="show" identifier="cvSegue" id="Iod-F9-rfs"/>
+                        <segue destination="dja-dm-GMO" kind="show" identifier="tvSegue" id="fhz-5j-fj0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N6E-fO-6Zd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="905" y="440"/>
+        </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="Zx8-pv-HkS">
+            <objects>
+                <collectionViewController id="OUM-4y-adN" customClass="RTCollectionViewController" customModule="RottenTomatoes" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="cvB-i6-eHb" userLabel="Movies Collection View">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="K8r-ka-ZdR">
+                            <size key="itemSize" width="250" height="300"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="movieCVC" id="zYs-Ym-cDM" customClass="MovieCollectionViewCell" customModule="RottenTomatoes" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Zv-ld-U3p">
+                                            <rect key="frame" x="13" y="13" width="225" height="274"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="7Zv-ld-U3p" firstAttribute="centerX" secondItem="zYs-Ym-cDM" secondAttribute="centerX" id="2Gp-Db-0rc"/>
+                                    <constraint firstItem="7Zv-ld-U3p" firstAttribute="top" secondItem="zYs-Ym-cDM" secondAttribute="topMargin" constant="5" id="2qr-Yj-5oZ"/>
+                                    <constraint firstItem="7Zv-ld-U3p" firstAttribute="centerY" secondItem="zYs-Ym-cDM" secondAttribute="centerY" id="d9O-2A-yhb"/>
+                                    <constraint firstItem="7Zv-ld-U3p" firstAttribute="leading" secondItem="zYs-Ym-cDM" secondAttribute="leadingMargin" constant="5" id="qKQ-h1-w8i"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="7Zv-ld-U3p" id="pCb-NA-fQH"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="OUM-4y-adN" id="cW3-57-8RJ"/>
+                            <outlet property="delegate" destination="OUM-4y-adN" id="AWe-Bh-EmD"/>
+                        </connections>
+                    </collectionView>
+                    <connections>
+                        <segue destination="HXL-lj-Iq1" kind="show" identifier="showMovieInfoFromCV" id="xVL-VE-MU4"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vbX-gY-vsB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="905" y="1225"/>
         </scene>
         <!--Top Movies-->
         <scene sceneID="iYm-zA-Aqc">
@@ -193,6 +263,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="n8H-D1-Ico"/>
+        <segue reference="xVL-VE-MU4"/>
+        <segue reference="fhz-5j-fj0"/>
     </inferredMetricsTieBreakers>
 </document>
