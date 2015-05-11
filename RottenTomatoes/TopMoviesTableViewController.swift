@@ -8,15 +8,18 @@
 
 import UIKit
 
-class TopMoviesTableViewController: UITableViewController {
+class TopMoviesTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var url = String()
     
     @IBOutlet weak var networkIndicatorLabel: UILabel!
     
     var movies = [Dictionary<String, AnyObject>]()
+    var filtered = [Dictionary<String, AnyObject>]()
     let manager = AFHTTPRequestOperationManager()
     let responseSerializer = AFJSONResponseSerializer()
+    
+    var searchController = UISearchController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +37,20 @@ class TopMoviesTableViewController: UITableViewController {
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl!, atIndex: 0)
+        
+        self.searchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.sizeToFit()
+            self.tableView.tableHeaderView = controller.searchBar
+            return controller
+        })()
+        
+        self.tableView.reloadData()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -61,7 +72,12 @@ class TopMoviesTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        if searchController.active {
+            return filtered.count
+        } else {
+            return movies.count
+        }
+ 
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -73,8 +89,13 @@ class TopMoviesTableViewController: UITableViewController {
         let posterImageView = cell.contentView.viewWithTag(1) as! UIImageView
         posterImageView.contentMode = UIViewContentMode.ScaleAspectFit
         let info = cell.contentView.viewWithTag(2) as! UILabel
+        
+        var movieDict = movies[indexPath.row]
+        if searchController.active {
+            movieDict = filtered[indexPath.row]
+        }
 
-        if let movieJSON = movies[indexPath.row] as Dictionary<String, AnyObject>? {
+        if let movieJSON = movieDict as Dictionary<String, AnyObject>? {
             let posters = movieJSON["posters"] as! Dictionary<String, AnyObject>
             let thumbnailUrl = posters["thumbnail"] as! String
             let thumbnailData = NSData(contentsOfURL: NSURL(string: thumbnailUrl)!)
@@ -125,6 +146,16 @@ class TopMoviesTableViewController: UITableViewController {
                 }
             }
         }
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController)
+    {
+        filtered.removeAll(keepCapacity: false)
+        let searchPredicate = NSPredicate(format: "title CONTAINS[c] %@", searchController.searchBar.text)
+        let results = (movies as NSArray).filteredArrayUsingPredicate(searchPredicate)
+        filtered = results as! [Dictionary<String, AnyObject>]
+        
+        self.tableView.reloadData()
     }
     
     // AFNetworking helper functions
