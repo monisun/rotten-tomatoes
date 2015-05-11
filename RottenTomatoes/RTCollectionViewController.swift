@@ -22,24 +22,14 @@ class RTCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        url = topMoviesStaticUrl
-        
         collectionView?.delegate = self
         collectionView?.dataSource = self
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-//        self.collectionView!.registerClass(MovieCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        //        Utility.startNetworkNotifier(self.networkIndicatorLabel)
         
         responseSerializer.acceptableContentTypes = NSSet(object: "text/plain") as Set<NSObject>
         manager.responseSerializer = responseSerializer
         self.makeTopMoviesGetRequest(url)
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -84,7 +74,6 @@ class RTCollectionViewController: UICollectionViewController {
         
         let posterImageView = cell.imageView as UIImageView
         posterImageView.contentMode = UIViewContentMode.ScaleAspectFit
-//        let info = cell.contentView.viewWithTag(2) as! UILabel
         
         if let movieJSON = movies[indexPath.row] as Dictionary<String, AnyObject>? {
             let posters = movieJSON["posters"] as! Dictionary<String, AnyObject>
@@ -97,20 +86,6 @@ class RTCollectionViewController: UICollectionViewController {
             } else {
                 NSLog("Unexpected: Unable to download thumbnail image from URL: \(thumbnailUrl)")
             }
-            
-//            let title = movieJSON["title"] as! String
-//            let year = movieJSON["year"] as! Int
-//            let runtime = movieJSON["runtime"] as! Int
-//            let mpaa_rating = movieJSON["mpaa_rating"] as! String
-            
-//            info.text = title + "\nRating: \(mpaa_rating) (\(year), \(runtime) min)"
-//            // styling
-//            info.textAlignment = NSTextAlignment.Left
-//            info.font = UIFont(name: "HelveticaNeue-Light", size: 16)
-//            info.textColor = UIColor.whiteColor()
-//            info.lineBreakMode = NSLineBreakMode.ByWordWrapping
-//            info.numberOfLines = 0
-            //             cell.textLabel!.center.x = CGFloat(self.tableView.center.x)
             
         } else {
             NSLog("Unexpected: Could not load movie JSON for row: \(indexPath.row)")
@@ -168,45 +143,4 @@ class RTCollectionViewController: UICollectionViewController {
     func printError(error: NSError) {
         println("Error: \(error.localizedDescription)")
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
-
 }

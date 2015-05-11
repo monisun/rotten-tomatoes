@@ -29,9 +29,6 @@ class MovieInfoViewController: UIViewController {
         Utility.startNetworkNotifier(self.networkIndicatorLabel)
         
         imageView.contentMode = UIViewContentMode.ScaleAspectFill
-        //        synopsisScrollView.contentSize.width = synopsisScrollView.frame.size.width
-        //        synopsisLabel.frame.size.width = synopsisScrollView.frame.size.width - 20
-        //        synopsisScrollView.contentSize.height = 300
         
         let title = movieJSON["title"] as! String
         let posters = movieJSON["posters"] as! Dictionary<String, AnyObject>
