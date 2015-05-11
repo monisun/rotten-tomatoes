@@ -31,3 +31,4 @@ Credits
 ---------
 * [Rotten Tomatoes API](http://developer.rottentomatoes.com/docs/read/JSON)
 * [AFNetworking](https://github.com/AFNetworking/AFNetworking)
+* [Reachability] (https://github.com/ashleymills/Reachability.swift)
