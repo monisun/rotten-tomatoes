@@ -16,6 +16,7 @@ Time spent: `10 hrs`
 
 #### Optional
 
+- [x] Implement segmented control to switch between list view and grid view.
 - [ ] All images fade in.
 - [x] For the larger poster, load the low-res first and switch to high-res when complete.
 - [ ] All images should be cached in memory and disk: AppDelegate has an instance of `NSURLCache` and `NSURLRequest` makes a request with `NSURLRequestReturnCacheDataElseLoad` cache policy. I tested it by turning off wifi and restarting the app.
