@@ -19,14 +19,15 @@ Time spent: `10 hrs`
 - [x] Implement segmented control to switch between list view and grid view.
 - [x] Add a tab bar for Box Office and DVD.
 - [x] For the larger poster, load the low-res first and switch to high-res when complete.
+- [x] Add a search bar to filter by movie title.
 - [ ] All images fade in.
 - [ ] All images should be cached in memory and disk: AppDelegate has an instance of `NSURLCache` and `NSURLRequest` makes a request with `NSURLRequestReturnCacheDataElseLoad` cache policy. I tested it by turning off wifi and restarting the app.
 - [ ] Customize the highlight and selection effect of the cell.
 - [ ] Customize the navigation bar.
-- [ ] Add a search bar: pretty simple implementation of searching against the existing table view data.
+
 
 ### Walkthrough
-![Video Walkthrough](https://github.com/monisun/rotten-tomatoes/blob/master/demo2.gif)
+![Video Walkthrough](https://github.com/monisun/rotten-tomatoes/blob/master/demo_3.gif)
 
 Credits
 ---------
