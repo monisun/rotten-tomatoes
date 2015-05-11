@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "RottenTomatoes.TopMoviesTableViewController.loadMoviesJSONArray (RottenTomatoes.TopMoviesTableViewController)(Swift.AnyObject) -&gt; ():TopMoviesTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "responseObj!.objectForKey(&quot;movies&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "responseObj.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RottenTomatoes.RottenTomatoesUITabBarController.segmentControlChanged (RottenTomatoes.RottenTomatoesUITabBarController)(Swift.AnyObject) -&gt; ():RottenTomatoesUITabBarController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tabBarController!.selectedIndex">
+            </PersistentString>
+            <PersistentString
+               value = "sender.selectedSegmentIndex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
